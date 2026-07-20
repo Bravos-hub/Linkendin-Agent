@@ -42,10 +42,11 @@ python3 scheduler/check_approved.py    # list merged (approved) drafts
 python3 scheduler/publish_buffer.py --ref drafts/YYYY-MM-DD   # post manually
 ```
 
-## Notes on Buffer's beta GraphQL API
-- Posts are created with `createPost` + `mode: addToQueue` — they land in your Buffer queue, not published instantly.
-- The API cannot edit or delete a created post — your PR review is the edit step.
+## Notes on Buffer's GraphQL API
+- Posts are created with `createPost` + `mode: addToQueue` — they land in your Buffer queue, not published instantly. Use `mode: customScheduled` with `dueAt` for a specific time.
+- The API supports creation, deletion, and retrieval — but no editing. Your PR review is the edit step.
 - Media upload is unreliable in the beta: posts go out **text-only** for now.
+- Post metrics are exposed via `post { metrics { type name value unit } }` and `aggregatedPostMetrics` — this is what will power the Phase 5 analytics loop without manual stat-pasting.
 
 ## Interactive mode
 Prefer reviewing in Kimi Code? Install the skill and say "run the linkedin agent":
