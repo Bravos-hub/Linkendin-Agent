@@ -1,0 +1,47 @@
+# Niche configuration — the agent re-reads this every run
+primary_track:
+  name: EV charging & e-mobility
+  keywords:
+    - EV charging
+    - charging infrastructure
+    - DC fast charging
+    - Level 2 charging
+    - megawatt charging
+    - AFIR
+    - NACS
+    - CCS
+    - smart charging
+    - V2G
+    - grid integration
+    - electric fleet
+  rss_feeds:
+    - https://electrek.co/feed/
+    - https://insideevs.com/rss/articles/all/
+    - https://chargedevs.com/feed/
+    - https://cleantechnica.com/feed/
+    - https://www.utilitydive.com/feeds/news/
+
+secondary_tracks:
+  - name: AI + business
+    keywords: [AI agents, LLM, enterprise AI, AI automation, AI regulation]
+    rss_feeds:
+      - https://techcrunch.com/category/artificial-intelligence/feed/
+      - https://venturebeat.com/feed/
+  - name: fintech
+    keywords: [KYC, KYB, payments, digital identity, fintech infrastructure]
+    rss_feeds:
+      - https://techcrunch.com/category/fintech/feed/
+
+# Rotation: primary track most days, secondary tracks fill in
+weekly_rotation:
+  mon: primary
+  tue: primary
+  wed: ai-business
+  thu: primary
+  fri: primary
+  sat: fintech
+  sun: primary
+
+blocked_topics:
+  - crypto price speculation
+  - political commentary

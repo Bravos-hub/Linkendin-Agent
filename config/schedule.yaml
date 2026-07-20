@@ -1,0 +1,20 @@
+# Daily run schedule
+daily_run: "07:00"          # local time; cron entry: 0 7 * * *
+timezone: Africa/Nairobi    # change to your timezone
+
+posting_cadence:
+  posts_per_day: 1          # agent drafts 3 options, you pick 1
+  carousel_days: [wed, sun] # carousel outline generated on these days
+
+approval:
+  method: github_pr         # drafts committed as a PR; merging = approval
+  repo: "Bravos-hub/Linkendin-Agent"
+  branch_prefix: drafts/
+
+publishing:
+  mode: manual              # manual (v1) | buffer | typefully (Phase 4)
+  buffer_access_token: ""   # fill in Phase 4
+
+analytics:
+  weekly_report_day: sun
+  metrics_source: manual    # manual paste (v1) | buffer api (Phase 5)
