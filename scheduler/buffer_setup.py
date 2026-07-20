@@ -50,11 +50,12 @@ def main():
 
     # step 2: channels for the first organization
     org_id = orgs[0]["id"]
-    resp = gql(
-        f'query {{ channels(input: {{ organizationId: {json.dumps(org_id)} }}) '
-        "{ id name service isQueuePaused } } }",
-        key,
+    query = (
+        "query { channels(input: { organizationId: "
+        + json.dumps(org_id)
+        + " }) { id name service isQueuePaused } }"
     )
+    resp = gql(query, key)
     if resp.get("errors"):
         sys.exit(f"graphql errors: {json.dumps(resp['errors'])[:500]}")
     channels = (resp.get("data") or {}).get("channels")
