@@ -2,18 +2,28 @@
 daily_run: "07:00"          # local time; cron entry: 0 7 * * *
 timezone: Africa/Nairobi    # change to your timezone
 
+# Headless generation via the Kimi API (used by generate.py in cron).
+# Get a key at platform.moonshot.ai (or platform.moonshot.cn).
+generation:
+  backend: kimi_api
+  base_url: https://api.moonshot.ai/v1   # use https://api.moonshot.cn/v1 for CN-platform keys
+  model: kimi-k2-0711-preview            # swap for any model your key can access
+  # note: a Kimi Code *subscription* key may not work on the open API;
+  # if generate.py returns 401/403, create a platform key instead.
+
 posting_cadence:
-  posts_per_day: 1          # agent drafts 3 options, you pick 1
+  posts_per_day: 1          # agent drafts 3 options, you pick 1 via selected.txt
   carousel_days: [wed, sun] # carousel outline generated on these days
 
 approval:
-  method: github_pr         # drafts committed as a PR; merging = approval
+  method: github_pr         # drafts committed as a PR; merging = approval + auto-post
   repo: "Bravos-hub/Linkendin-Agent"
   branch_prefix: drafts/
 
 publishing:
-  mode: manual              # manual (v1) | buffer | typefully (Phase 4)
-  buffer_access_token: ""   # fill in Phase 4
+  mode: buffer              # manual | buffer — buffer queues the merged draft automatically
+  # Buffer secrets live in GitHub repo secrets (BUFFER_ACCESS_TOKEN, BUFFER_PROFILE_ID),
+  # never in this file. Set them up once with scheduler/buffer_setup.py.
 
 analytics:
   weekly_report_day: sun
