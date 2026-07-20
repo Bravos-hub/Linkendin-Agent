@@ -1,22 +1,41 @@
 #!/usr/bin/env python3
-"""One-time helper: list your Buffer channels so you can copy the LinkedIn profile ID.
+"""One-time helper: list your Buffer channels via the GraphQL API
+so you can copy the LinkedIn channel ID.
 
 Usage:
-  BUFFER_ACCESS_TOKEN=... python3 scheduler/buffer_setup.py
+  BUFFER_API_KEY=... python3 scheduler/buffer_setup.py
 
-Get a token at https://buffer.com/developers/apps/create (create an app, copy its access token).
-Then add both values as GitHub repo secrets: BUFFER_ACCESS_TOKEN and BUFFER_PROFILE_ID.
+Get an API key at https://publish.buffer.com/settings/api
+Then add two GitHub repo secrets: BUFFER_API_KEY and BUFFER_CHANNEL_ID.
+If the response shape looks different (API is in beta), paste the raw
+output and adapt — or find the channel ID in Buffer's API Explorer.
 """
 import json
 import os
 import sys
 import urllib.request
+import urllib.error
 
-token = os.environ.get("BUFFER_ACCESS_TOKEN") or sys.exit("BUFFER_ACCESS_TOKEN missing")
-req = urllib.request.Request(f"https://api.bufferapp.com/1/profiles.json?access_token={token}")
-with urllib.request.urlopen(req) as r:
-    profiles = json.loads(r.read())
+key = os.environ.get("BUFFER_API_KEY") or sys.exit("BUFFER_API_KEY missing")
+query = "query { channels { id name service } }"
+req = urllib.request.Request(
+    "https://api.buffer.com",
+    method="POST",
+    headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+    data=json.dumps({"query": query}).encode(),
+)
+try:
+    with urllib.request.urlopen(req, timeout=60) as r:
+        resp = json.loads(r.read())
+except urllib.error.HTTPError as e:
+    sys.exit(f"API error {e.code}: {e.read().decode()[:500]}")
 
-for p in profiles:
-    print(f"{p['service']:12} {p.get('service_username') or p.get('formatted_username', ''):30} id: {p['id']}")
-print("\nCopy the LinkedIn channel's id into the BUFFER_PROFILE_ID repo secret.")
+channels = (resp.get("data") or {}).get("channels")
+if not channels:
+    print("unexpected response shape (beta API) — raw response:")
+    print(json.dumps(resp, indent=2)[:2000])
+    sys.exit(0)
+
+for c in channels:
+    print(f"{c.get('service', '?'):12} {c.get('name', ''):30} id: {c.get('id')}")
+print("\nCopy the LinkedIn channel's id into the BUFFER_CHANNEL_ID repo secret.")
