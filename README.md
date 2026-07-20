@@ -1,39 +1,50 @@
 # LinkedIn AI Content Agent
 
-Daily semi-autonomous LinkedIn content pipeline, built to run with Kimi Code.
+Fully automated daily LinkedIn pipeline: research → generate → PR approval → auto-post.
 
-## How it works
-1. **Research (Python):** `main.py` fetches RSS stories for today's track and ranks them into a research brief.
-2. **Generation (Kimi Code):** the `linkedin-content-agent` skill reads the brief + `config/voice.md` and drafts 3 on-voice post options, a carousel outline (on carousel days), and an image prompt.
-3. **Approval (you):** review drafts in `content/drafts/YYYY-MM-DD/`. Phase 2 adds GitHub PR-based approval.
+## The daily loop (zero terminal work)
+1. **7:00 AM (cron):** research brief is built, drafts are generated via the Kimi API, and a PR titled "Drafts for YYYY-MM-DD" is opened.
+2. **You (phone):** review the PR. Optionally edit `selected.txt` to pick which option posts (default: option-1-technical). Edit any draft inline.
+3. **Merge = approve.** A GitHub Action queues the selected draft to LinkedIn via Buffer. Done.
 
-## Setup
+## One-time setup
 ```bash
 pip install feedparser pyyaml
-# install the skill for Kimi Code:
-cp -r skills/linkedin-content-agent ~/.kimi-code/skills/   # use ~/.kimi/skills/ if your install uses that path
-```
 
-## Daily run (automated, Phase 2)
-```bash
-# one-time: token with repo scope for PR creation
-export GITHUB_TOKEN=<your PAT>     # add to ~/.bashrc to persist
+# secrets — .env is gitignored, cron loads it automatically
+cat > .env <<'EOF'
+KIMI_API_KEY=sk-...        # platform.moonshot.ai key
+GITHUB_TOKEN=ghp_...       # classic PAT, repo scope
+EOF
 
-# cron entry (crontab -e):
+# cron (crontab -e):
 0 7 * * * cd /home/delta/Linkendin-Agent && bash scheduler/daily_run.sh >> logs/daily.log 2>&1
 ```
-Each morning: research brief is built, drafts are generated (via Kimi Code skill), and a PR titled "Drafts for YYYY-MM-DD" is opened. **Merging the PR = approval.**
 
-Manual equivalents:
+### Buffer (auto-posting)
+1. Create an app at https://buffer.com/developers/apps/create → copy the access token.
+2. `BUFFER_ACCESS_TOKEN=... python3 scheduler/buffer_setup.py` → copy your LinkedIn channel's profile ID.
+3. Repo → Settings → Secrets and variables → Actions → add `BUFFER_ACCESS_TOKEN` and `BUFFER_PROFILE_ID`.
+
+## Manual equivalents
 ```bash
 python3 main.py                        # research brief only
+python3 generate.py                    # drafts via Kimi API
 python3 scheduler/open_pr.py           # open/update today's approval PR
-python3 scheduler/check_approved.py    # list merged (approved) drafts ready to post
+python3 scheduler/check_approved.py    # list merged (approved) drafts
+python3 scheduler/publish_buffer.py --ref drafts/YYYY-MM-DD   # post manually
+```
+
+## Interactive mode
+Prefer reviewing in Kimi Code? Install the skill and say "run the linkedin agent":
+```bash
+cp -r skills/linkedin-content-agent ~/.kimi-code/skills/
 ```
 
 ## Roadmap
 - [x] Phase 1: research + drafting + voice profile
 - [x] Phase 2: cron + GitHub PR approval flow
+- [x] Phase 2.5: headless generation via Kimi API
 - [ ] Phase 3: image generation + carousel rendering
-- [ ] Phase 4: scheduling via Buffer/Typefully API
+- [x] Phase 4: merge-triggered posting via Buffer
 - [ ] Phase 5: analytics loop feeding back into voice.md
