@@ -53,7 +53,7 @@ def main():
         local = "on disk" if folder.is_dir() else "run: git pull"
         print(f"  {date}  merged {p['merged_at'][:10]}  ({local})")
         print(f"    {p['html_url']}")
-    print("\nPost manually from content/drafts/<date>/ — pick one option, publish, done.")
+    print("\nMerged drafts live in content/drafts/<date>/ — already scheduled via the publish workflow.")
 
 
 if __name__ == "__main__":

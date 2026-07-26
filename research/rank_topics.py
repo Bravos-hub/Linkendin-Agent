@@ -31,26 +31,32 @@ def main():
         sys.exit("no stories to rank — run fetch_trends.py first (try --days 2)")
 
     ranked = sorted(stories, key=score, reverse=True)
-    top, runners_up = ranked[0], ranked[1:6]
+    top_stories, runners_up = ranked[:6], ranked[6:11]
 
     brief_dir = ROOT / "research" / "briefs"
     brief_dir.mkdir(parents=True, exist_ok=True)
     brief = brief_dir / f"{datetime.now():%Y-%m-%d}.md"
     lines = [
         f"# Research brief — {datetime.now():%Y-%m-%d}",
-        f"Track: {top['track']}",
+        f"Track: {top_stories[0]['track']}",
         "",
-        "## Top story",
-        f"**{top['title']}**",
-        f"Source: {top['source']} — {top['link']}",
+        "## Top stories (in ranked order; skip blocked topics, use the first 4 usable)",
+    ]
+    for i, s in enumerate(top_stories, 1):
+        lines += [
+            "",
+            f"### {i}. {s['title']}",
+            f"Source: {s['source']} — {s['link']}",
+            "",
+            s["summary"],
+        ]
+    lines += [
         "",
-        top["summary"],
-        "",
-        "## Runners-up (use only if the top story is unusable)",
+        "## Runners-up (use only if a top story is unusable)",
     ]
     lines += [f"- [{s['title']}]({s['link']}) — {s['source']}" for s in runners_up]
     brief.write_text("\n".join(lines))
-    print(f"brief -> {brief}\ntop story: {top['title']}")
+    print(f"brief -> {brief}\ntop story: {top_stories[0]['title']}")
 
 
 if __name__ == "__main__":

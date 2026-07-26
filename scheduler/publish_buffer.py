@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Queue the approved draft to LinkedIn via Buffer's GraphQL API.
+"""Schedule the approved drafts to LinkedIn via Buffer's GraphQL API.
 
 Runs automatically in GitHub Actions when a drafts/<date> PR is merged,
 or locally for testing:
   BUFFER_API_KEY=... BUFFER_CHANNEL_ID=... python3 scheduler/publish_buffer.py --ref drafts/2026-07-21
 
-Which option gets posted is controlled by content/drafts/<date>/selected.txt
-(edit it in the PR before merging; defaults to option-1-technical).
+Every post-*.md file in the drafts folder is scheduled at the matching
+post_times slot from config/schedule.yaml (post-1 -> first slot, etc.),
+at 4-hour intervals. Delete a post file in the PR before merging to skip
+that slot.
 
 API notes (beta): key from https://publish.buffer.com/settings/api
 The API cannot edit/delete created posts, and media upload is unreliable —
@@ -18,20 +20,34 @@ import os
 import sys
 import urllib.request
 import urllib.error
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 ENDPOINT = "https://api.buffer.com"
 
 
-def create_post(text, channel_id, api_key):
+def load_schedule():
+    with open(ROOT / "config" / "schedule.yaml") as f:
+        cfg = yaml.safe_load(f)
+    tz = ZoneInfo(cfg.get("timezone", "UTC"))
+    times = cfg.get("posting_cadence", {}).get("post_times", [])
+    if not times:
+        sys.exit("set posting_cadence.post_times in config/schedule.yaml")
+    return tz, times
+
+
+def create_post(text, channel_id, api_key, due_at):
     # values inlined via json.dumps for safe GraphQL string escaping
     query = (
         "mutation { createPost(input: {"
         f"text: {json.dumps(text)}, "
         f"channelId: {json.dumps(channel_id)}, "
-        "schedulingType: automatic, mode: addToQueue"
+        f"dueAt: {json.dumps(due_at)}, "
+        "schedulingType: automatic, mode: customScheduled"
         "}) { ... on PostActionSuccess { post { id dueAt } } ... on MutationError { message } } }"
     )
     req = urllib.request.Request(
@@ -60,21 +76,29 @@ def main():
     if not draft_dir.is_dir():
         sys.exit(f"no drafts at {draft_dir}")
 
-    sel_file = draft_dir / "selected.txt"
-    selected = sel_file.read_text().strip() if sel_file.exists() else "option-1-technical"
-    post = draft_dir / f"{selected}.md"
-    if not post.exists():
-        sys.exit(f"selected file {post.name} not found in {draft_dir}")
+    posts = sorted(draft_dir.glob("post-*.md"))
+    if not posts:
+        sys.exit(f"no post-*.md files found in {draft_dir}")
 
-    resp = create_post(post.read_text().strip(), channel, api_key)
-    if resp.get("errors"):
-        sys.exit(f"buffer graphql errors: {json.dumps(resp['errors'])[:500]}")
-    result = resp.get("data", {}).get("createPost", {})
-    if "post" in result:
-        due = result["post"].get("dueAt", "next queue slot")
-        print(f"queued to LinkedIn via Buffer: {selected} from {date} (due {due})")
-    else:
-        sys.exit(f"buffer rejected the post: {result.get('message', json.dumps(resp)[:500])}")
+    tz, times = load_schedule()
+    if len(posts) > len(times):
+        sys.exit(f"{len(posts)} posts but only {len(times)} post_times configured")
+
+    now = datetime.now(tz)
+    for post, slot in zip(posts, times):
+        local_dt = datetime.fromisoformat(f"{date}T{slot}").replace(tzinfo=tz)
+        # late approval: roll past slots forward to the same time on a future day
+        while local_dt <= now:
+            local_dt += timedelta(days=1)
+        due_at = local_dt.astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
+        resp = create_post(post.read_text().strip(), channel, api_key, due_at)
+        if resp.get("errors"):
+            sys.exit(f"buffer graphql errors: {json.dumps(resp['errors'])[:500]}")
+        result = resp.get("data", {}).get("createPost", {})
+        if "post" in result:
+            print(f"scheduled {post.name} from {date} (due {result['post'].get('dueAt', due_at)})")
+        else:
+            sys.exit(f"buffer rejected {post.name}: {result.get('message', json.dumps(resp)[:500])}")
 
 
 if __name__ == "__main__":

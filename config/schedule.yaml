@@ -12,7 +12,8 @@ generation:
   # if generate.py returns 401/403, create a platform key instead.
 
 posting_cadence:
-  posts_per_day: 1          # agent drafts 3 options, you pick 1 via selected.txt
+  posts_per_day: 4                          # agent drafts 4 posts (one per story), all are published
+  post_times: ["07:00", "11:00", "15:00", "19:00"]  # local time, 4-hour intervals
   carousel_days: [wed, sun] # carousel outline generated on these days
 
 approval:

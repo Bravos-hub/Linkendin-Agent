@@ -71,22 +71,23 @@ def main():
     weekday = datetime.strptime(date, "%Y-%m-%d").strftime("%a").lower()
     is_carousel = weekday in sched.get("posting_cadence", {}).get("carousel_days", [])
 
-    required = ["option-1-technical.md", "option-2-narrative.md", "option-3-hybrid.md",
+    required = ["post-1.md", "post-2.md", "post-3.md", "post-4.md",
                 "image-prompt.md", "meta.md"] + (["carousel.md"] if is_carousel else [])
     user_msg = (
         f"Today is {date} ({weekday}).\n"
         f"Carousel day: {'yes — also produce carousel.md' if is_carousel else 'no — skip the carousel'}.\n\n"
         f"Here is today's research brief:\n\n{brief.read_text()}\n\n"
         "Follow the workflow exactly (steps 1-6; skip the interactive PR/report steps). "
+        "Write one post per story, numbered in posting order. "
         "Output ONLY the files, each introduced by a marker line in this exact format:\n"
-        "=== option-1-technical.md ===\n<file content>\n=== option-2-narrative.md ===\n<file content>\n"
+        "=== post-1.md ===\n<file content>\n=== post-2.md ===\n<file content>\n"
         f"Files required: {', '.join(required)}"
     )
 
     payload = {
         "model": model,
         "temperature": 0.7,
-        "max_tokens": 4096,
+        "max_tokens": 8192,
         "messages": [
             {"role": "system", "content": build_system_prompt()},
             {"role": "user", "content": user_msg},

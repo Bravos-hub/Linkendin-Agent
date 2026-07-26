@@ -59,12 +59,12 @@ def load_repo():
 
 def pr_body(draft_dir):
     parts = [
-        "## Today's LinkedIn drafts",
+        "## Today's LinkedIn posts",
         "",
-        "Review the options below. **Merging this PR approves the content and queues it to LinkedIn via Buffer.**",
+        "Review the posts below. **Merging this PR approves all of them and schedules them to LinkedIn via Buffer at 4-hour intervals** (post-1 at the first `post_times` slot, and so on).",
         "",
-        "**To choose which option gets posted:** edit `selected.txt` in this PR (default: `option-1-technical`).",
-        "Edit drafts inline before merging, or close the PR to discard.",
+        "**To drop a post:** delete its `post-N.md` file in this PR before merging.",
+        "Edit posts inline before merging, or close the PR to discard.",
         "",
     ]
     for f in sorted(draft_dir.glob("*.md")):
@@ -86,11 +86,6 @@ def main():
     draft_dir = ROOT / "content" / "drafts" / date
     if not draft_dir.is_dir() or not any(draft_dir.iterdir()):
         sys.exit(f"no drafts found at {draft_dir} - run the generation step first")
-
-    # default selection for auto-posting; user edits this in the PR before merging
-    sel = draft_dir / "selected.txt"
-    if not sel.exists():
-        sel.write_text("option-1-technical\n")
 
     owner, repo = load_repo()
     branch = f"drafts/{date}"

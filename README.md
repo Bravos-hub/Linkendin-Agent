@@ -3,9 +3,9 @@
 Fully automated daily LinkedIn pipeline: research → generate → PR approval → auto-post.
 
 ## The daily loop (zero terminal work)
-1. **7:00 AM (GitHub Actions):** research brief is built, drafts are generated via the Kimi API, and a PR titled "Drafts for YYYY-MM-DD" is opened.
-2. **You (phone):** review the PR. Optionally edit `selected.txt` to pick which option posts (default: option-1-technical). Edit any draft inline.
-3. **Merge = approve.** A GitHub Action queues the selected draft to LinkedIn via Buffer. Done.
+1. **7:00 AM (GitHub Actions):** research brief is built, 4 posts are generated via the Kimi API (one per top story), and a PR titled "Drafts for YYYY-MM-DD" is opened.
+2. **You (phone):** review the PR. Edit any post inline; delete a `post-N.md` file to drop that slot.
+3. **Merge = approve.** A GitHub Action schedules all 4 posts to LinkedIn via Buffer at 4-hour intervals (07:00, 11:00, 15:00, 19:00 local — see `post_times` in `config/schedule.yaml`). Done.
 
 ## One-time setup
 
@@ -43,7 +43,7 @@ python3 scheduler/publish_buffer.py --ref drafts/YYYY-MM-DD   # post manually
 ```
 
 ## Notes on Buffer's GraphQL API
-- Posts are created with `createPost` + `mode: addToQueue` — they land in your Buffer queue, not published instantly. Use `mode: customScheduled` with `dueAt` for a specific time.
+- Posts are created with `createPost` + `mode: customScheduled` and a `dueAt` timestamp (UTC), which lands each post at its configured 4-hour slot. Use `mode: addToQueue` instead if you prefer Buffer's own queue slots.
 - The API supports creation, deletion, and retrieval — but no editing. Your PR review is the edit step.
 - Media upload is unreliable in the beta: posts go out **text-only** for now.
 - Post metrics are exposed via `post { metrics { type name value unit } }` and `aggregatedPostMetrics` — this is what will power the Phase 5 analytics loop without manual stat-pasting.
