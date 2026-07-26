@@ -1,5 +1,3 @@
-# Option 1 — Mode A (Technical brief)
-
 Terminal tractors may be the most naturally electrifiable vehicle class in freight. The duty cycle reads like a design brief for a battery-electric drivetrain: low speeds, extreme torque demand from a standstill, constant stop-and-go, operation inside a confined yard, and a guaranteed return to the same depot every shift. Kalmar Ottawa, which invented the terminal tractor concept in 1943, is now putting that thesis to work — its battery-electric T2 EV is entering service with Canadian logistics firm WTC Group.
 
 The hardware reflects the duty cycle. A continuous-duty electric drive motor delivers up to 454 kW (roughly 610 hp) at peak output, drawing from a modular lithium-ion pack offered in 105, 140, or 210 kWh capacities. Gross combination weight rating reaches 195,000 lbs — approximately 88.5 tonnes — which matters far more in a yard spotter than highway range ever will. Full torque from zero rpm is the real operational upgrade: a diesel spotter spends much of its life at idle or part load, exactly where combustion efficiency is worst and electric drive is strongest.
