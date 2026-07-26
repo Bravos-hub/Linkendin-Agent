@@ -1,0 +1,11 @@
+# Option 1 — Mode A (Technical brief)
+
+Terminal tractors may be the most naturally electrifiable vehicle class in freight. The duty cycle reads like a design brief for a battery-electric drivetrain: low speeds, extreme torque demand from a standstill, constant stop-and-go, operation inside a confined yard, and a guaranteed return to the same depot every shift. Kalmar Ottawa, which invented the terminal tractor concept in 1943, is now putting that thesis to work — its battery-electric T2 EV is entering service with Canadian logistics firm WTC Group.
+
+The hardware reflects the duty cycle. A continuous-duty electric drive motor delivers up to 454 kW (roughly 610 hp) at peak output, drawing from a modular lithium-ion pack offered in 105, 140, or 210 kWh capacities. Gross combination weight rating reaches 195,000 lbs — approximately 88.5 tonnes — which matters far more in a yard spotter than highway range ever will. Full torque from zero rpm is the real operational upgrade: a diesel spotter spends much of its life at idle or part load, exactly where combustion efficiency is worst and electric drive is strongest.
+
+The deployment model is equally instructive. WTC Group's trucks are supported by Transport Canada's iMHZEV incentive program for medium- and heavy-duty zero-emission vehicles, a reminder that fleet electrification economics still lean on policy scaffolding at this stage of the market. Because the vehicles never leave the yard, charging is a depot problem rather than a public-infrastructure problem: energy delivery can be scheduled around shift patterns, dwell time, and opportunity-charging windows, with no dependence on corridor charging or en-route networks.
+
+The engineering tradeoff sits in pack sizing. Overspec the battery and you pay for kilowatt-hours that sit unused every shift; underspec it and you buy mid-shift charging downtime that erodes the productivity case. The correct specification question for a yard truck is not "how much range" but "how much energy per shift" — and the modular 105-to-210 kWh offering is effectively an admission that no two fleets will answer that question the same way.
+
+#ElectricFleet #TerminalTractor #ZeroEmissionTrucks #EVInfrastructure #CleanMobility #CleanEnergy #SustainabilityTech #Shuolex #EVZONE #bravostech
