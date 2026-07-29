@@ -15,5 +15,3 @@ What would it take for your utility or CPO to adopt a similar model?
 Link in comments.
 
 #SmartCharging #ManagedCharging #GridIntegration #V2G #DemandResponse #EVInfrastructure #CleanMobility #Shuolex #EVZONE #bravostech
-
-Source: [AmpUp / PURA](https://chargedevs.com/newswire/connecticut-selects-ampup-to-scale-adapt-earn-managed-ev-charging-program/)
