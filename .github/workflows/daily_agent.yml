@@ -1,0 +1,30 @@
+name: daily-linkedin-agent
+
+on:
+  schedule:
+    - cron: '0 4 * * *'    # 07:00 Africa/Nairobi (UTC+3)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install feedparser pyyaml
+      - name: Research
+        run: python3 main.py
+      - name: Generate drafts
+        env:
+          KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
+        run: python3 generate.py
+      - name: Open approval PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scheduler/open_pr.py
