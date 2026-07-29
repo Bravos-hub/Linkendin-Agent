@@ -1,19 +1,21 @@
-AI-generated code is changing what engineering work means — from writing lines to validating intent.
+From Eclipse to Leaf clone — the economics of a cheap EV mass-market play
 
-At VB Transform 2026, Instacart CTO Anirban Kundu made a striking claim: in 97% of cases, his builders no longer read the code they ship.
+The Mitsubishi Eclipse name once meant affordable, tunable, enthusiast-accessible performance.
 
-The agents handle the bulk of generation and boilerplate, especially in projects where code is regenerated on a weekly basis.
+Now it means a slightly restyled Nissan Leaf.
 
-That shifts the engineer's role to defining intent, designing evaluations, and managing exceptions.
+Mitsubishi just released specs for the 2027 Eclipse Sportback EV, and the mechanical overlap is obvious: a 75 kWh battery pack, an estimated 303-mile max range, and 10-80% DC charging in about 35 minutes.
 
-The company now runs roughly 7,000 automatic evaluations each month and answers more than 8,000 real-time developer queries with about 99.9% accuracy.
+It carries the same dual-port layout as the Leaf: a J1772 port on the driver's side for Level 1 or Level 2 AC charging, and a NACS port on the passenger side for Tesla Supercharger access at up to 150 kW.
 
-Its agentic SRE system, trained on Instacart's own incidents, raised detection and mitigation accuracy from roughly 60% to more than 90%.
+That is not a record-breaking charge curve, but it is enough to make the time worthwhile when 80% of the battery equals roughly 240 miles of usable range.
 
-The lesson? When machines handle the repetitive, human judgment becomes the scarce resource.
+The price has not been announced, but expectations are anchored near the Leaf's $31,535 starting point.
 
-What is the first engineering workflow you would redesign if your team could stop treating legacy code as permanent inventory?
+The lesson? Badge engineering is not exciting, but cheap electric options in a 75 kWh package are.
 
-Source: https://venturebeat.com/orchestration/instacarts-cto-says-ai-made-the-company-stop-worrying-about-tech-debt
+Will a familiar form factor at a lower price move more buyers than a unique design at a higher one?
 
-#AIAgents #AgenticAI #DataSecurity #CyberSecurity #SoftwareEngineering #CleanTech #SustainabilityTech #Shuolex #EVZONE #bravostech
+Source: https://insideevs.com/news/803019/mitsubishi-eclipse-sportback-battery-specs/
+
+#EVCharging #AFIR #SmartGrid #EVInfrastructure #CleanMobility #CleanEnergy #SustainabilityTech #Shuolex #EVZONE #bravostech

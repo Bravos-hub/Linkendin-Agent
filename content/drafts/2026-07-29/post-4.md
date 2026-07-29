@@ -1,23 +1,23 @@
-The agentic enterprise has an identity problem — and it is not the one most vendors are selling.
+From distributor collapse to direct factory control — a Chinese EV brand resets in Australia
 
-For decades, enterprise security assumed the actor behind every access request was a person.
+Xpeng's Australian distributor, True EV, went into administration after less than two years.
 
-AI agents break that assumption.
+The relationship deteriorated over the future distribution model and is now before the Federal Court.
 
-They operate at machine speed, combine permissions across systems, and can execute actions that no single human authorized.
+Rather than exit, Xpeng is taking direct control of importation, distribution, parts, and service.
 
-Snowflake's answer is Cortex AI Gateway: a control layer that governs how first-party and third-party agents access data, tools, and models.
+The reset is needed. Over 2,000 G6 units have been delivered, but early customers faced service and communication failures.
 
-The gateway supports more than 100 MCP servers and logs both the agent's verified non-human identity and the human who delegated the task — a model Snowflake calls dual attribution.
+Xpeng's response includes a 5-year Melbourne expansion plan and up to 50 sales outlets over the next six months.
 
-Access is scoped to the task, not inherited from the user's standing permissions.
+The company promises to honour early incentives, supply spare parts to around 2,000 local dealers, and build localised logistics and technical support.
 
-Partners including 1Password, SailPoint, and Okta are aligning around a common trust framework, even though they usually compete.
+Xpeng has sold more than 1 million vehicles globally; the Australian setback is operational, not existential.
 
-The lesson? Trust in the agentic era is not a one-time login decision; it is a continuous, data-layer function.
+The lesson? For Chinese EV exporters, distribution partners can accelerate entry, but direct control is the only way to guarantee service consistency.
 
-If your audit log shows an agent moved money, opened a database, or exfiltrated data, whose name should it record?
+Is the Australian market a warning sign for overseas-dependent EV brands, or a playbook for how to recover from a bad distributor?
 
-Source: https://venturebeat.com/security/snowflake-launches-cortex-ai-gateway-to-control-ai-agents-and-prevent-runaway-enterprise-costs
+Source: https://cleantechnica.com/2026/07/28/xpeng-back-in-the-drivers-seat-in-australia/
 
-#AIAgents #AgenticAI #DataSecurity #CyberSecurity #SoftwareEngineering #CleanTech #SustainabilityTech #Shuolex #EVZONE #bravostech
+#EVCharging #AFIR #SmartGrid #EVInfrastructure #CleanMobility #CleanEnergy #SustainabilityTech #Shuolex #EVZONE #bravostech

@@ -1,51 +1,49 @@
 ## Slide 1 (Cover)
-**AI agent governance — from human identity to machine trust**
-A control layer is emerging for the non-human identities that AI agents use to access enterprise data and tools.
+**DC-coupled energy hubs — from grid constraint to behind-the-meter flexibility**
+Solar, battery storage, and bidirectional EV charging on a common DC bus can cut costs and bypass expensive grid upgrades.
 
-design_notes: Cover composition with a human silhouette on the left and a machine/node network on the right, connected by a single bridge line in electric teal. Deep navy background, white negative space, one amber accent where the two halves meet.
+design_notes: Cover composition showing a single DC-coupled hub node in electric teal at the center, with solar, battery, and EV spokes in white and navy. Deep navy background, amber accent on the EV, generous negative space on the left for overlay text.
 
 ## Slide 2
-**The old assumption**
-Enterprise security was built for people. AI agents are now the actors.
+**The real bottleneck**
+Fleet electrification is hitting grid-connection limits before it hits vehicle availability.
 
-SailPoint sees human-to-non-human identity ratios of at least **10:1** in Fortune 500 companies — before counting the tools and APIs each agent touches.
-
-design_notes: One human icon on the left, ten machine/agent icons on the right, with a multiplication arrow. Clean icon set, navy and teal, amber on the ratio figure.
+design_notes: A constrained utility pole/transformer icon with a small warning amber highlight, next to a fleet depot silhouette. Clean icon style, no text in icons.
 
 ## Slide 3
-**The new risk**
-Agents operate at machine speed. They combine permissions across systems and execute actions no single human authorized.
+**The architecture**
+A DC-coupled microgrid puts solar generation, battery storage, and EV charging on the same DC bus.
 
-design_notes: Abstract network map showing a single agent node branching across multiple application nodes, with an amber warning highlight on an unexpected cross-system action.
+design_notes: Simple one-line diagram: solar panel → battery → DC bus → bidirectional charger → EV. Use white lines, teal nodes, navy background. Minimalist, technical schematic.
 
 ## Slide 4
-**The control layer**
-Snowflake Cortex AI Gateway acts as a centralized control plane. It supports **more than 100 MCP servers** and governs both first-party and third-party agents.
+**The savings**
+Cenex modelling shows annual energy cost savings of £2,600–£3,700 for office, leisure, and depot sites on two-rate tariffs; high-demand factory sites can exceed £18,000.
 
-design_notes: Hub-and-spoke diagram with a gateway node at the center in teal, connected to agent and tool nodes in white and navy. Negative space on the left for potential overlay text.
+design_notes: Two horizontal bars or a simple comparison chart: a teal bar for typical sites and a longer amber bar for high-demand factory sites. No grid lines.
 
 ## Slide 5
-**Dual attribution**
-Every action is recorded twice: the verified non-human identity of the agent and the human who delegated the task. Access is scoped to the task, not inherited from the user.
+**The demand impact**
+Peak site demand can drop by 5 kW to 150 kW depending on the site and operational profile.
 
-design_notes: Two linked ID badges, one labeled "agent" and one labeled "human," connected to a narrow task-scoped key. Minimal, no fine print, navy background.
+design_notes: A downward-sloping line graph from a peak point to a lower point, with a range annotation. Teal line, white axis, amber accent on the endpoint.
 
 ## Slide 6
-**Cost governance**
-The gateway gives IT and finance a unified view of AI consumption, attributes spend to specific teams and agents, and enforces limits before bills spiral.
+**The design reality**
+No single solution fits every site. Performance depends on charging behaviour, battery size, solar capacity, baseline demand, and tariff structure.
 
-design_notes: Simple bar chart with one amber bar approaching a horizontal limit line, teal bars behind it. Clean, no grid clutter.
+design_notes: A small decision matrix or four site icons (depot, factory, office, leisure) with varying size/colour intensity to show tailored sizing. No fine print.
 
 ## Slide 7 (Lesson)
-**The lesson?** Trust in the agentic era is not a one-time login decision. It is continuous verification at the data layer.
+**The lesson?** DC-coupled microgrids turn grid limits into a design variable, not a hard stop.
 
-design_notes: Bold single-line statement centered, with a small shield icon emitting scanning rings in teal and amber. Plenty of negative space.
+design_notes: Bold single-line statement centered, with a small abstract bridge or gateway icon in teal and amber. Lots of negative space.
 
 ## Slide 8 (CTA)
-If your audit log shows an agent moved money or exfiltrated data, whose name should it record?
+Which site type do you think benefits most from a DC-coupled energy hub?
 
-Follow for more agentic infrastructure analysis.
+Follow for more EV infrastructure analysis.
 
 #Shuolex #EVZONE #bravostech
 
-design_notes: Question text on the left, brand accent bar on the right, no additional imagery. Clean, ready for a 1:1 carousel cover.
+design_notes: Question text on the left, brand accent bar on the right, clean and uncluttered. Ready for a 1:1 carousel cover.
