@@ -1,0 +1,9 @@
+The consolidation of AI-agent security is happening in identity, not just data.
+
+Cyera's agreement to acquire Oasis Security for approximately $1 billion — mostly cash, with the remainder in Cyera shares — follows a $600 million raise at a $12 billion valuation and the earlier purchases of Ryft and Genie Security. The deal is Cyera's third acquisition this year and signals that the next platform battle in enterprise security is non-human identity: the credentials, service principals, and machine accounts that AI agents use to move between systems.
+
+Oasis was founded in 2022 and has raised about $195 million from Accel, Craft Ventures, Cyberstarts, and other investors. Its focus is on non-human identities, primarily the credentials and permissions that proliferate as AI agents are deployed. Cyera already claims more than $150 million in annual recurring revenue and roughly $2.3 billion in total funding across its five-year history, but it is not yet profitable. The strategic bet is that data security and identity security cannot remain separate product categories when the actor touching the data is increasingly a machine rather than a person.
+
+Post-acquisition, Cyera plans to integrate Oasis's technology into a single identity and data security platform. The architecture makes sense: data classification, access governance, and agent behavior monitoring converge on the same object — the non-human identity. Competitors including 1Password, SailPoint, and Okta are racing toward the same runtime-governance chokepoint, but Cyera is trying to reach it through acquisition velocity rather than organic build. The engineering risk is integration debt; the market risk is that customers may prefer a governance layer that sits closer to the data platform than to the identity vendor.
+
+#AIAgents #AgenticAI #DataSecurity #CyberSecurity #SoftwareEngineering #CleanTech #SustainabilityTech #Shuolex #EVZONE #bravostech
