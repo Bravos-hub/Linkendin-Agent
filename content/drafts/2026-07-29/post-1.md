@@ -1,0 +1,9 @@
+The fleet charging problem is increasingly a grid-connection problem, not a vehicle problem.
+
+Cenex's new study, delivered under the UK Government-funded Innovate UK V2X Phase 2 Programme, models the 3ti Papilio3 V2X DC FastHub — a DC-coupled energy hub that combines solar generation, battery storage, and bidirectional EV charging behind a single meter. Using Cenex's EIGER energy-modelling tool, the analysis evaluated the hub across office, leisure, depot, and factory sites. For sites on two-rate tariffs, annual energy cost savings land in the £2,600 to £3,700 range; high-demand factory sites can exceed £18,000 per year. Peak site demand drops by between 5 kW and 150 kW depending on the site and operational profile, without requiring network reinforcement.
+
+The architecture matters. A DC-coupled microgrid keeps generation, storage, and charging on a common DC bus, reducing the conversion losses that accumulate when each asset is separately AC-coupled. Battery storage does the load shifting, tariff optimisation, and high-power buffering that lets the site host add chargers without tripping a constrained grid connection. The catch is that performance depends on vehicle charging behaviour, battery sizing, solar capacity, baseline site demand, and tariff structure; there is no standard configuration that fits every depot.
+
+The real design tradeoff is between capex depth and operational flexibility. A hub with enough battery and solar to cover a factory's peak can pay for itself quickly where grid upgrades are expensive or slow, but the same sizing at a low-utilisation leisure site may not. As Mark Potter at 3ti noted, the priority now is getting vehicle makers to follow open interoperability standards so these systems can deliver in the real world, not just in the model.
+
+#EVCharging #AFIR #SmartGrid #EVInfrastructure #CleanMobility #CleanEnergy #SustainabilityTech #Shuolex #EVZONE #bravostech
