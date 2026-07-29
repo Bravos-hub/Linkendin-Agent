@@ -1,0 +1,36 @@
+name: publish-linkedin-posts
+
+on:
+  push:
+    branches: [main]
+    paths: ['content/drafts/**']
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Draft ref to publish, e.g. drafts/2026-07-29'
+        required: false
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+      - name: Determine draft ref
+        id: ref
+        run: |
+          if [ -n "${{ github.event.inputs.ref }}" ]; then
+            echo "ref=${{ github.event.inputs.ref }}" >> "$GITHUB_OUTPUT"
+          else
+            date=$(git diff --name-only HEAD^ HEAD | grep -oE 'content/drafts/[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -1 | sed 's|content/drafts/||')
+            echo "ref=drafts/$date" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publish to Buffer
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
+        run: python3 scheduler/publish_buffer.py --ref ${{ steps.ref.outputs.ref }}
