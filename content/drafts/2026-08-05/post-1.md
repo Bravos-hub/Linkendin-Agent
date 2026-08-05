@@ -1,0 +1,9 @@
+Corridor fast charging is a site-architecture problem long before it is a hardware problem. Pilot, GM, and EVgo have now opened 300 charging locations across the United States, totaling roughly 1,300 DC fast-charging stalls — an average of just over four stalls per site. The partnership, formed in 2022, is now past the halfway point toward its stated build-out target of 2,000 chargers across 500 locations.
+
+The instructive detail is not the stall count but the operating model. These sites replicate the travel-center formula: 24/7 access, overhead canopies for weather protection, pull-through stalls that accommodate vehicles towing trailers, and on-site restrooms, food, retail, and WiFi. That is an engineering decision as much as a hospitality one. A DC fast-charging stop is a dwell event measured in tens of minutes, and facilities designed to monetize and accommodate that window change the utilization economics of the entire site. The network's average PlugShare rating of 9.41 out of 10 suggests drivers notice the difference.
+
+The broader signal is who is building this infrastructure. Travel centers and retail chains — Pilot, Love's, Wawa, Buc-ee's, Walmart — control the two assets corridor charging actually needs: highway-adjacent real estate and an existing customer-dwell model. That shifts the constraint. Scaling from four stalls to eight or twelve per site is less a hardware question than a grid-interconnection and utility-capacity one, and the operators holding the real estate will be the ones negotiating those upgrades.
+
+The implication for infrastructure planners: the competitive moat in corridor charging is moving from charger hardware to site design and grid capacity. Hardware is purchasable. Permitted, grid-connected, amenity-backed highway real estate is not.
+
+#DCFastCharging #EVCharging #ChargingInfrastructure #EVInfrastructure #ElectricalEngineering #CleanMobility #CleanEnergy #Shuolex #EVZONE #bravostech
